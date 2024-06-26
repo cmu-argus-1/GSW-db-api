@@ -1,0 +1,12 @@
+{
+  "name": "gsw-db-api",
+  "version": "1.0.0",
+  "description": "database api for the groundstation mysql database",
+  "main": "api.js",
+  "type": "module",
+  "scripts": {
+    "test": "node api.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
