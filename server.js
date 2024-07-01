@@ -10,15 +10,17 @@ const port = 3000;
 app.get('/', (req, res) => {
     res.send('Hello, world!');
 });
-app.get('/table/:id', (req, res) => {
-    get_table(req.params.id, (err, data) => {
+
+app.get('/heartbeat/:table', (req, res) => {
+    // from_time = req.params.timestamp
+    console.log(req.query.timestamp)
+    get_table(req.params.table, (err, data) => {
         if (err) {
             console.log(err)
-            res.send("not found", 404)
+            res.status(404).send("not found")
         } else {
-            res.send(JSON.stringify(data), 200)
+            res.status(200).send(JSON.stringify(data))
         }
-
     })
 })
 
