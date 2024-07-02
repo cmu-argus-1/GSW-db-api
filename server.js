@@ -12,8 +12,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/heartbeat/:table', (req, res) => {
-    start_time = req.query.start_time || "-1h"
-    stop_time = req.query.stop_time || "now()"
+    const start_time = req.query.start_time || "-1h";
+    const stop_time = req.query.stop_time || "now()";
     get_table(req.params.table, start_time, stop_time, (err, data) => {
         if (err) {
             console.log(err)
