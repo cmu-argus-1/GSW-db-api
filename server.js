@@ -1,11 +1,13 @@
+import cors from 'cors';
 import express from 'express';
 import { get_last_n_from_table, get_table_time_range } from './lib/api.js';
 import { host_ip } from './lib/secrets.js';
 
-
 const app = express();
 const hostname = host_ip;
 const port = 3000;
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Hello, world!');
@@ -16,10 +18,11 @@ app.get('/heartbeat/by_time/:table', (req, res) => {
     const stop_time = req.query.stop_time || "now()";
     get_table_time_range(req.params.table, start_time, stop_time, (err, data) => {
         if (err) {
-            console.log(err)
-            res.status(404).send("not found")
+            console.log(err);
+            res.status(404).send("not found");
         } else {
-            res.status(200).send(JSON.stringify(data))
+            res.contentType('application/json');
+            res.status(200).send(JSON.stringify(data));
         }
     })
 })
@@ -30,9 +33,10 @@ app.get('/heartbeat/by_last/:table', (req, res) => {
     get_last_n_from_table(req.params.table, n, offset, (err, data) => {
         if (err) {
             console.log(err);
-            res.status(404).send("not found")
+            res.status(404).send("not found");
         } else {
-            res.status(200).send(JSON.stringify(data))
+            res.contentType('json');
+            res.status(200).send(JSON.stringify(data));
         }
     })
 })
