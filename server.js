@@ -3,7 +3,9 @@ import { get_table_time_range } from './lib/api.js';
 import { host_ip } from './lib/secrets.js';
 
 
-const app = express();get_table
+const app = express();
+const hostname = host_ip;
+const port = 3000;
 
 app.get('/', (req, res) => {
     res.send('Hello, world!');
