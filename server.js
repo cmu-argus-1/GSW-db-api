@@ -5,7 +5,7 @@ import { host_ip } from './lib/secrets.js';
 
 const app = express();
 const hostname = host_ip;
-const port = 3000;
+const port = 5500;
 
 app.use(cors());
 
